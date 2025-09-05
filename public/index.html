@@ -42,6 +42,12 @@
     .btn.danger{background:var(--error);color:#fff}
     .row{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:10px;align-items:center}
     .muted{color:var(--muted);font-size:13px}
+    .muted.example {
+      margin-top:8px;
+      font-size:13px;
+      white-space:pre-line;
+      pointer-events:none; /* 버튼 클릭 방해 안되게 */
+    }
     .preview img{max-width:160px;border-radius:12px;margin-top:6px;border:2px solid #fff;box-shadow:0 0 8px rgba(0,0,0,0.15)}
     details summary{cursor:pointer}
   </style>
@@ -50,7 +56,7 @@
   <header>🌸 DOGE 단체팩션 신청서 🌸</header>
   <main class="wrap">
 
-    <!-- 기본 정보 -->
+    <!-- ① 기본 정보 -->
     <section class="card">
       <h2>① 기본 정보</h2>
       <label>팩션명 *</label>
@@ -65,10 +71,11 @@
         <input id="leaderNick" placeholder="팩션장 닉네임 *">
         <input id="leaderId" placeholder="고유번호 *">
         <input id="leaderAge" type="number" placeholder="나이 *">
+        <button class="btn danger" type="button">삭제</button>
       </div>
     </section>
 
-    <!-- 팩션원 -->
+    <!-- ② 팩션원 -->
     <section class="card">
       <h2>② 팩션원 (임시 10명, 정식 15명)</h2>
       <div id="members"></div>
@@ -76,15 +83,17 @@
       <div class="muted">최소 10명 이상 입력해야 임시 창설, 15명 이상 입력해야 정식 창설이 가능합니다.</div>
     </section>
 
-    <!-- 고위직 접속 가능 시간 -->
+    <!-- ③ 고위직 접속 가능 시간 -->
     <section class="card">
       <h2>③ 고위직 접속 가능 시간</h2>
       <div id="avail"></div>
       <button class="btn primary" id="addAvailBtn" type="button">+ 항목 추가</button>
-      <div class="muted">예) 도지 | 1 - 주간(20:00~24:00), 주말(14:00~24:00)</div>
+      <div class="muted example">
+예) 도지 | 1 - 주간(20:00~24:00), 주말(14:00~24:00)
+      </div>
     </section>
 
-    <!-- 모집 & 운영계획 -->
+    <!-- ④ 모집 & 운영계획 -->
     <section class="card">
       <h2>④ 모집 & 운영계획</h2>
       <label>모집 경로 *</label>
@@ -97,7 +106,7 @@
       <div id="planCount" class="muted">0 / 300자</div>
     </section>
 
-    <!-- 개인정보 동의 & 증빙 -->
+    <!-- ⑤ 개인정보 동의 & 증빙 -->
     <section class="card">
       <h2>⑤ 개인정보 동의 & 증빙</h2>
 
@@ -106,23 +115,24 @@
         <div class="muted" style="white-space:pre-wrap; line-height:1.6; background:rgba(255,255,255,0.5); border:1px solid var(--line); padding:12px; border-radius:12px; margin-top:10px">
 본인은 ONG소프트(이하 '기관')에서 운영하는 "FIVEM DOGE"(이하 '서비스') 이용과 관련하여, 본인의 주민등록증(운전면허증, 여권, 청소년증 포함, 학생증 제외) 제출에 대해 아래의 내용을 충분히 이해하고 동의합니다.
 
-1. 개인정보 수집 및 이용 동의  
-본인은 서비스 이용 과정에서 기관이 본인의 신분증을 확인하는 것에 동의합니다. 또한, 다음 기준을 인지합니다.  
- - 디스코드 프로필 확대 + 주민등록증 사진 1부  
- - 인게임 유저 정보 + 주민등록증 사진 1부  
+1. 개인정보 수집 및 이용 동의
+본인은 서비스 이용 과정에서 기관이 본인의 신분증(주민등록증, 운전면허증, 여권, 청소년증 포함, 학생증 제외)을 확인하는 것에 동의합니다. 또한, 다음과 같은 기준으로 신분증 사진을 제출해야 함을 인지합니다.
+ - 디스코드 프로필을 크게 확대하여 주민등록증과 함께 촬영한 사진 1부
+ - 인게임 오른쪽 상단 유저 정보와 함께 주민등록증을 촬영한 사진 1부
 
-2. 개인정보의 수집 및 이용 목적  
-계정 도용, 부정 이용 방지 및 서버 정책 준수를 위함.  
+2. 개인정보의 수집 및 이용 목적
+기관은 이용자의 신원을 확인하여 계정 도용, 부정 이용을 방지하고, 서버 내 운영 정책을 준수하기 위해 본인의 신분증을 확인합니다.
 
-3. 개인정보의 보유 및 이용 기간  
-본인 확인 후 즉시 폐기, 다만 일정 기간 보관 후 파기.  
+3. 개인정보의 보유 및 이용 기간
+수집된 신분증 정보는 본인 확인이 완료된 후 즉시 폐기됩니다. 다만, 부정 이용 방지를 위해 일정 기간 동안 보관될 수 있으며, 보관 기간이 경과하면 즉시 파기됩니다.
 
-4. 동의 철회 및 정보 삭제 요청  
-언제든 철회 가능, 요청 시 즉시 삭제.  
+4. 동의 철회 및 정보 삭제 요청
+본인은 언제든지 동의를 철회할 수 있으며, 철회 요청 시 기관은 보유하고 있는 본인의 신분증 정보를 즉시 삭제합니다. 동의 철회 및 정보 삭제 요청은 기관의 고객센터 또는 팩션 단톡방 채널을 통해 접수할 수 있습니다.
 
-5. 기타 사항  
-- 운영 정책 변경 시 사전 공지  
-- 주민등록번호 뒷자리, 주소 등 민감 정보는 반드시 가리고 제출.  
+5. 기타 사항
+- 본 동의서는 서비스 운영 정책에 따라 변경될 수 있으며, 변경 시 사전 공지됩니다.
+- 신분증 제출 시 개인정보(주민등록번호 등) 일부를 가린 상태로 제출할 수 있습니다.
+ ㄴ 가리는 정보: (증명사진, 주소지, 주민등록번호(뒷자리, 앞자리 공개), 면허증 번호, 면허증 아이디, 여권번호, )
 
 본인은 위의 내용을 충분히 이해하고, 이에 동의합니다.
         </div>
@@ -149,18 +159,18 @@
       <button class="btn primary" id="submitBtn" type="button">🌈 제출하기</button>
       <pre id="status" class="muted"></pre>
     </section>
+
   </main>
 
 <script>
   const byId=id=>document.getElementById(id);
+  const qs=(s,el=document)=>el.querySelector(s);
   const qsa=(s,el=document)=>[...el.querySelectorAll(s)];
   const statusEl=byId("status");
 
-  // 🔥 네 Discord Webhook URL 직접 입력
-  const WEBHOOK_URL = "https://discordapp.com/api/webhooks/1413156136617508946/1kSwzADSfg1xWDIT6MAs6pIA7QymOb8K10FnUH2FBOh2TfA-nLtHuxJyrDqvHsL-i-yM";
+  const WEBHOOK_URL = "여기에_본인_웹훅_URL"; // ⚠️ 본인 웹훅으로 교체
 
   function setStatus(m,c=""){statusEl.textContent=m;statusEl.className=c||"muted";}
-
   function memberRow(d={}) {
     const w=document.createElement("div");
     w.className="row";
@@ -181,11 +191,22 @@
     w.querySelector("button").onclick=()=>w.remove();
     return w;
   }
-
+  function setPreview(inputId,prevId){
+    const i=byId(inputId),p=byId(prevId);
+    i.addEventListener("change",()=>{
+      p.innerHTML="";
+      [...i.files].forEach(f=>{
+        if(!f.type.startsWith("image/")) return;
+        const img=new Image(); const fr=new FileReader();
+        fr.onload=e=>img.src=e.target.result; fr.readAsDataURL(f);
+        p.appendChild(img);
+      });
+    });
+  }
   function getData(){
     return {
       factionName:byId("factionName").value.trim(),
-      factionType:(document.querySelector('input[name="factionType"]:checked')||{}).value||"",
+      factionType:(qs('input[name="factionType"]:checked')||{}).value||"",
       leader:{nick:byId("leaderNick").value.trim(),id:byId("leaderId").value.trim(),age:byId("leaderAge").value.trim()},
       members:qsa("#members .row").map(r=>{
         const [a,b,c]=qsa("input",r).map(i=>i.value.trim());
@@ -195,69 +216,64 @@
         const [a,b,c]=qsa("input",r).map(i=>i.value.trim());
         return a||b||c?{head:a,day:b,week:c}:null;
       }).filter(Boolean),
-      route:(document.querySelector('input[name="route"]:checked')||{}).value||"",
+      route:(qs('input[name="route"]:checked')||{}).value||"",
       plan:byId("plan").value.trim(),
       consent:{realName:byId("realName").value.trim(),date:byId("agreeDate").value,agree:byId("agreeCheck").checked},
       submittedAt:new Date().toISOString()
     };
   }
+  function validate(d){
+    const errs=[];
+    if(!d.factionName) errs.push("팩션명");
+    if(!d.leader.nick||!d.leader.id||!d.leader.age) errs.push("팩션장");
+    if(d.members.length<10) errs.push("팩션원 최소 10명");
+    if(!d.plan) errs.push("운영계획");
+    if(!d.consent.realName||!d.consent.date||!d.consent.agree) errs.push("개인정보 동의");
+    return errs;
+  }
+  (function init(){
+    for(let i=0;i<10;i++) byId("members").appendChild(memberRow());
+    byId("avail").appendChild(availRow());
+    setPreview("imgDiscord","prevDiscord");
+    setPreview("imgIngame","prevIngame");
+    const plan=byId("plan"),pc=byId("planCount");
+    plan.addEventListener("input",()=>pc.textContent=`${plan.value.length} / 300자`);
+    byId("addMemberBtn").onclick=()=>byId("members").appendChild(memberRow());
+    byId("addAvailBtn").onclick=()=>byId("avail").appendChild(availRow());
+    byId("submitBtn").onclick=onSubmit;
+  })();
 
   async function onSubmit(){
-    const d=getData();
-    if(!d.factionName||!d.leader.nick||!d.leader.id||!d.leader.age||!d.plan||!d.consent.realName||!d.consent.date||!d.consent.agree){
-      setStatus("필수 항목 확인 ❌","error");
-      return;
-    }
-
+    const data=getData();
+    const errs=validate(data);
+    if(errs.length){setStatus("필수 항목 확인: "+errs.join(", "),"error");return;}
     const lines=[
       "**[ 단팩 창설 신청서 ]**","",
-      `**팩션명**: ${d.factionName}`,
-      `**팩션 형태**: ${d.factionType}`,
-      `**팩션장**: ${d.leader.nick} | ${d.leader.id} | ${d.leader.age}`,
-      `**팩션원**: ${d.members.map(m=>`${m.nick} | ${m.id} | ${m.age}`).join(", ")||"(없음)"}`,"",
+      `**팩션명**: ${data.factionName}`,
+      `**팩션 형태**: ${data.factionType}`,
+      `**팩션장**: ${data.leader.nick} | ${data.leader.id} | ${data.leader.age}`,
+      `**팩션원**: ${data.members.map(m=>`${m.nick} | ${m.id} | ${m.age}`).join(", ")}`,"",
       "**고위직 접속 가능 시간**",
-      ...(d.availability.length?d.availability.map(a=>`• ${a.head} - 주간(${a.day}), 주말(${a.week})`):["• (미작성)"]),"",
-      `**모집 경로**: ${d.route}`,
-      "**운영계획**:",d.plan,"",
-      `**동의자**: ${d.consent.realName}`,
-      `**동의일자**: ${d.consent.date}`,
-      `_submittedAt: ${d.submittedAt}_`
+      ...(data.availability.length?data.availability.map(a=>`• ${a.head} - 주간(${a.day}), 주말(${a.week})`):["• (미작성)"]),"",
+      `**모집 경로**: ${data.route}`,
+      "**운영계획**:",data.plan,"",
+      `**동의자**: ${data.consent.realName}`,
+      `**동의일자**: ${data.consent.date}`,
+      `_submittedAt: ${data.submittedAt}_`
     ];
-
-    const f1=byId("imgDiscord").files?.[0]||null;
-    const f2=byId("imgIngame").files?.[0]||null;
-    const attachments=[];
-    if(f1) attachments.push({id:"0",filename:f1.name});
-    if(f2) attachments.push({id:"1",filename:f2.name});
-
-    const payload={
-      embeds:[{
-        title:`📨 단체팩션 창설 신청서 — ${d.factionName}`,
-        description:lines.join("\n"),
-        color:0xff9ecd,
-        footer:{text:"DOGE SERVER · 자동 제출"},
-        timestamp:d.submittedAt,
-        image:attachments[0]?{url:`attachment://${attachments[0].filename}`} : undefined
-      }],
-      attachments
-    };
-
-    const form=new FormData();
-    form.append("payload_json",JSON.stringify(payload));
-    if(f1) form.append("files[0]",f1,f1.name);
-    if(f2) form.append("files[1]",f2,f2.name);
-
+    const payload={embeds:[{title:`📨 단체팩션 창설 신청서 — ${data.factionName}`,description:lines.join("\n"),color:0xff9ecd,footer:{text:"DOGE SERVER · 자동 제출"},timestamp:data.submittedAt}]};
     setStatus("제출 중…");
     try{
-      const res=await fetch(WEBHOOK_URL,{method:"POST",body:form});
-      const txt=await res.text();
-      if(!res.ok) throw new Error("HTTP "+res.status+"\n"+txt);
+      const res=await fetch(WEBHOOK_URL,{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify(payload)
+      });
+      if(!res.ok) throw new Error("HTTP "+res.status);
       setStatus("제출 완료 ✅","ok");
-    }catch(e){
-      setStatus("제출 실패 ❌\n"+(e.message||e),"error");
+    }catch(e){setStatus("제출 실패 ❌\n"+(e.message||e),"error");
     }
   }
-
   (function init(){
     for(let i=0;i<10;i++) byId("members").appendChild(memberRow());
     byId("avail").appendChild(availRow());
