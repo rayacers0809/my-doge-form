@@ -1,0 +1,48 @@
+# ========================
+# 기본 Node.js / 웹 프로젝트용 .gitignore
+# ========================
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# build outputs
+/.next
+/out
+/dist
+/build
+
+# dotenv 환경변수
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE/editor settings
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# 기타 캐시
+*.log
+.cache/
